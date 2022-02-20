@@ -12,6 +12,9 @@
 
 ActiveRecord::Schema.define(version: 2022_01_13_222414) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "actors", force: :cascade do |t|
     t.string "name"
     t.string "imdb_id"
@@ -20,8 +23,8 @@ ActiveRecord::Schema.define(version: 2022_01_13_222414) do
   end
 
   create_table "favorite_movies", force: :cascade do |t|
-    t.integer "movie_id"
-    t.integer "user_id"
+    t.bigint "movie_id"
+    t.bigint "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["movie_id"], name: "index_favorite_movies_on_movie_id"
@@ -29,8 +32,8 @@ ActiveRecord::Schema.define(version: 2022_01_13_222414) do
   end
 
   create_table "favorites", force: :cascade do |t|
-    t.integer "movie_id"
-    t.integer "user_id"
+    t.bigint "movie_id"
+    t.bigint "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["movie_id"], name: "index_favorites_on_movie_id"
@@ -38,8 +41,8 @@ ActiveRecord::Schema.define(version: 2022_01_13_222414) do
   end
 
   create_table "movie_actors", force: :cascade do |t|
-    t.integer "movie_id"
-    t.integer "actor_id"
+    t.bigint "movie_id"
+    t.bigint "actor_id"
     t.string "role"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -51,7 +54,7 @@ ActiveRecord::Schema.define(version: 2022_01_13_222414) do
     t.string "title"
     t.string "director"
     t.string "image"
-    t.integer "actor_id"
+    t.bigint "actor_id"
     t.text "plot"
     t.integer "year"
     t.integer "movie_length"
@@ -64,8 +67,8 @@ ActiveRecord::Schema.define(version: 2022_01_13_222414) do
 
   create_table "reviews", force: :cascade do |t|
     t.float "stars"
-    t.integer "movie_id"
-    t.integer "user_id"
+    t.bigint "movie_id"
+    t.bigint "user_id"
     t.text "content"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
